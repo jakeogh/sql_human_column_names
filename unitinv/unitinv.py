@@ -90,7 +90,7 @@ def cli(ctx,
     ctx.obj['verbose'] = verbose
     ctx.obj['debug'] = debug
     ctx.obj['null'] = null
-    ctx.obj['database_uri'] = 'postgres://postgres@localhost/' + APP_NAME
+    ctx.obj['database_uri'] = 'postgresql://postgresql@localhost/' + APP_NAME
 
 
 @cli.command()

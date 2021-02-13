@@ -102,9 +102,9 @@ def ipython_core(ctx):
     start_database(verbose=False, debug=False,)
     db_url = ctx.obj['database_uri']
     engine = create_engine(db_url, poolclass=NullPool, echo=ctx.obj['verbose'], future=True)
-    if not database_already_exists(ctx.obj['database_uri']):  # executes SELECT 1 FROM pg_database WHERE datname='path_test_1520320264'
-        print("creating empty database:", db_url)
-        create_database(db_url)  # executes CREATE DATABASE
+    #if not database_already_exists(ctx.obj['database_uri']):  # executes SELECT 1 FROM pg_database WHERE datname='path_test_1520320264'
+    #    print("creating empty database:", db_url)
+    create_database(db_url)  # executes CREATE DATABASE
     with engine.connect() as conn:
         result = conn.execute(text("select 'hello world'"))
         print(result.all())

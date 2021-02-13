@@ -106,6 +106,8 @@ def ipython_core(ctx):
     #    print("creating empty database:", db_url)
     create_database(db_url)  # executes CREATE DATABASE
     with engine.connect() as conn:
+        conn.execute('CREATE DATABASE ' + db_url)
+        conn.commit()
         result = conn.execute(text("select 'hello world'"))
         print(result.all())
         import IPython; IPython.embed()

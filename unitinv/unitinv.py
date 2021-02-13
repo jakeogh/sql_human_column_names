@@ -134,7 +134,8 @@ def list_postgresql_column_types(ctx, all_types):
                 conn.execute(text('select * from pg_type'))
         else:
             results = \
-                    conn.execute(text('select format_type(pg_type.typname, -1), pg_type.typlen, pg_type.typtype from pg_type where typisdefined and typarray!=:z and typtype!=:a and not typname like :x'), {"z": 0, "a": "d", "x": 'reg%'})
+                    conn.execute(text('select pg_type.typname, format_type(pg_type.oid, -1), pg_type.typlen, pg_type.typtype from pg_type where typisdefined and typarray!=:z and typtype!=:a and not typname like :x'), {"z": 0, "a": "d", "x": 'reg%'})
+                    #conn.execute(text('select pg_type.typname, pg_type.typlen, pg_type.typtype from pg_type where typisdefined and typarray!=:z and typtype!=:a and not typname like :x'), {"z": 0, "a": "d", "x": 'reg%'})
                 #conn.execute(text('select pg_type.typname, pg_type.typlen, pg_type.typtype from pg_type where typisdefined and typarray!=:z and typtype!=:a and not typispreferred'), {"z": 0, "a": 'd'})
                 #conn.execute(text('select pg_type.typname, pg_type.typlen, pg_type.typtype from pg_type where typisdefined=:y and typarray!=:z and typtype!=:a'), {"y": True, "z": 0, "a": 'd'})
         for result in results:

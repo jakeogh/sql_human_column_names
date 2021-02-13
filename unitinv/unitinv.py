@@ -130,7 +130,7 @@ def list_postgresql_column_types(ctx):
     #create_database(db_url)  # https://github.com/kvesteri/sqlalchemy-utils/issues/474
     with engine.connect() as conn:
         results = \
-                conn.execute(text('select pg_type.typname, pg_type.typlen, pg_type.typtype from pg_type where typisdefined=:y and typarray=:z and typtype!=:a'), {"y": True, "z": 0, "a": 'd'})
+                conn.execute(text('select pg_type.typname, pg_type.typlen, pg_type.typtype from pg_type where typisdefined=:y and typarray!=:z and typtype!=:a'), {"y": True, "z": 0, "a": 'd'})
             #conn.execute(text('select pg_type.typname, pg_type.typlen, pg_type.typtype from pg_type where typisdefined=:y'), {"y": True})
         for result in results:
             print(result)

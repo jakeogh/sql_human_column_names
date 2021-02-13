@@ -76,7 +76,7 @@ def cli(ctx,
                 conn.execute(text('select * from pg_type'))
         else:
             results = \
-                conn.execute(text('select pg_type.typname, format_type(pg_type.oid, -1), pg_type.typlen, pg_type.typtype from pg_type where typisdefined and typarray!=:z and typtype!=:a and not typname like :x and not typname not like :b'), {"z": 0, "a": "d", "x": 'reg%', "b": 'bpchar'})
+                conn.execute(text('select pg_type.typname, format_type(pg_type.oid, -1), pg_type.typlen, pg_type.typtype from pg_type where typisdefined and typarray!=:z and typtype!=:a and not typname like :x and not typname like :b'), {"z": 0, "a": "d", "x": 'reg%', "b": 'bpchar'})
                 #conn.execute(text('select pg_type.typname, format_type(pg_type.oid, -1), pg_type.typlen, pg_type.typtype from pg_type where typisdefined and typarray!=:z and typtype!=:a and not typname like :x'), {"z": 0, "a": "d", "x": 'reg%'})
                 #conn.execute(text('select pg_type.typname, pg_type.typlen, pg_type.typtype from pg_type where typisdefined and typarray!=:z and typtype!=:a and not typname like :x'), {"z": 0, "a": "d", "x": 'reg%'})
                 #conn.execute(text('select pg_type.typname, pg_type.typlen, pg_type.typtype from pg_type where typisdefined and typarray!=:z and typtype!=:a and not typispreferred'), {"z": 0, "a": 'd'})

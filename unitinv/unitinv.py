@@ -40,6 +40,7 @@ from kcl.sqlalchemy.delete_database import \
     delete_database as really_delete_database
 from kcl.sqlalchemy.model.BaseMixin import BASE
 from kcl.sqlalchemy.self_contained_session import self_contained_session
+from kcl.sqlalchemy.self_contained_session import start_database
 from kcl.userops import not_root
 from retry_on_exception import retry_on_exception
 from sqlalchemy import create_engine
@@ -96,6 +97,7 @@ def cli(ctx,
 @cli.command()
 @click.pass_context
 def ipython_core(ctx):
+    start_database(verbose=False, debug=False,)
     engine = create_engine(ctx.obj['database_uri'], poolclass=NullPool, echo=ctx.obj['verbose'], future=True)
     with engine.connect() as conn:
         result = conn.execute(text("select 'hello world'"))

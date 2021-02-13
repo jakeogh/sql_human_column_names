@@ -76,7 +76,7 @@ def cli(ctx,
     ctx.obj['null'] = null
 
     start_database(verbose=False, debug=False,)
-    db_url = ctx.obj['database_uri']
+    db_url = "postgresql://postgres@localhost/postgres"
     engine = create_engine(db_url,
                            poolclass=NullPool,
                            echo=ctx.obj['verbose'],

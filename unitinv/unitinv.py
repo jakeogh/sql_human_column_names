@@ -114,6 +114,11 @@ def ipython_core(ctx):
         print(result.all())
         import IPython; IPython.embed()
 
+@cli.command()
+@click.pass_context
+def delete_database(ctx):
+    start_database(verbose=False, debug=False,)
+    really_delete_database(ctx.obj['database_uri'])
 
 #@cli.command()
 #@click.pass_context

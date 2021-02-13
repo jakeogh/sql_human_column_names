@@ -104,7 +104,7 @@ def ipython_core(ctx):
     engine = create_engine(db_url, poolclass=NullPool, echo=ctx.obj['verbose'], future=True)
     #if not database_already_exists(ctx.obj['database_uri']):  # executes SELECT 1 FROM pg_database WHERE datname='path_test_1520320264'
     #    print("creating empty database:", db_url)
-    create_database(db_url)  # executes CREATE DATABASE
+    #create_database(db_url)  # https://github.com/kvesteri/sqlalchemy-utils/issues/474
     with engine.connect() as conn:
         conn.execute('CREATE DATABASE ' + db_url)
         conn.commit()

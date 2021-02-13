@@ -10,22 +10,22 @@ dependencies = ["icecream", "click", "colorama", "click-command-tree"]
 
 config = {
     "version": "0.1",
-    "name": "unitinv",
-    "url": "https://github.com/jakeogh/unitinv",
+    "name": "sql_human_column_names",
+    "url": "https://github.com/jakeogh/sql_human_column_names",
     "license": "ISC",
     "author": "Justin Keogh",
     "author_email": "github.com@v6y.net",
     "description": "Short explination of what it does _here_",
     "long_description": __doc__,
     "packages": find_packages(exclude=['tests']),
-    "package_data": {"unitinv": ['py.typed']},
+    "package_data": {"sql_human_column_names": ['py.typed']},
     "include_package_data": True,
     "zip_safe": False,
     "platforms": "any",
     "install_requires": dependencies,
     "entry_points": {
         "console_scripts": [
-            "unitinv=unitinv.unitinv:cli",
+            "sql_human_column_names=sql_human_column_names.sql_human_column_names:cli",
         ],
     },
 }

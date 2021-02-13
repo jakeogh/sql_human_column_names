@@ -39,6 +39,7 @@ from kcl.configops import click_write_config_entry
 from kcl.sqlalchemy.delete_database import \
     delete_database as really_delete_database
 from kcl.sqlalchemy.model.BaseMixin import BASE
+from kcl.sqlalchemy.self_contained_session import create_postgresql_database
 from kcl.sqlalchemy.self_contained_session import database_already_exists
 from kcl.sqlalchemy.self_contained_session import self_contained_session
 from kcl.sqlalchemy.self_contained_session import start_database
@@ -102,6 +103,7 @@ def ipython_core(ctx):
     start_database(verbose=False, debug=False,)
     db_url = ctx.obj['database_uri']
     engine = create_engine(db_url, poolclass=NullPool, echo=ctx.obj['verbose'], future=True)
+    create_postgresql_database(db_url)
     #if not database_already_exists(ctx.obj['database_uri']):  # executes SELECT 1 FROM pg_database WHERE datname='path_test_1520320264'
     #    print("creating empty database:", db_url)
     #create_database(db_url)  # https://github.com/kvesteri/sqlalchemy-utils/issues/474

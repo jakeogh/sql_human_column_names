@@ -118,6 +118,24 @@ def delete_database(ctx):
     start_database(verbose=False, debug=False,)
     really_delete_database(ctx.obj['database_uri'])
 
+@cli.command()
+@click.pass_context
+def list_postgresql_column_types(ctx):
+    start_database(verbose=False, debug=False,)
+    db_url = ctx.obj['database_uri']
+    engine = create_engine(db_url, poolclass=NullPool, echo=ctx.obj['verbose'], future=True)
+    create_postgresql_database(db_url)
+    #if not database_already_exists(ctx.obj['database_uri']):  # executes SELECT 1 FROM pg_database WHERE datname='path_test_1520320264'
+    #    print("creating empty database:", db_url)
+    #create_database(db_url)  # https://github.com/kvesteri/sqlalchemy-utils/issues/474
+    with engine.connect() as conn:
+        results = \
+            conn.execute(text('select pg_type.typname, pg_type.typlen, pg_type.typtype from pg_type where typisdefined=:y'), {"y": True})
+        for result in results:
+            print(result)
+        #import IPython; IPython.embed()
+
+
 #@cli.command()
 #@click.pass_context
 #def ipython_orm(ctx):

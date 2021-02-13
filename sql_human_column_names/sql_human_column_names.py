@@ -19,11 +19,9 @@
 # pylint: disable=R0916  # Too many boolean expressions in if statement
 
 
-#import os
 import sys
 
 import click
-from kcl.sqlalchemy.self_contained_session import create_postgresql_database
 from kcl.sqlalchemy.self_contained_session import start_database
 from sqlalchemy import create_engine
 from sqlalchemy import text
@@ -72,7 +70,6 @@ def cli(ctx,
                            poolclass=NullPool,
                            echo=ctx.obj['verbose'],
                            future=True,)
-    create_postgresql_database(db_url)
     with engine.connect() as conn:
         if all_types:
             results = \
